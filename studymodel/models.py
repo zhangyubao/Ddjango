@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Person(object):
+class Person(models.Model):
     """docstring for Person"""
     GENDER = ((1, 'Male'), (2, 'Female'))
     '''
@@ -151,6 +151,23 @@ list(Base.objects.all())  返回一个list
 # pickle查询集是干嘛用的 这个进一步了解~~~~~~~~~~~~~
 
 
+
+
+'''
+ 自定义管理器
+'''
+class  BookManager(models.Manager):
+    def  creat_book(self,title):
+        book = self.create(title = title)
+        return book
+
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    objects = BookManager()
+
+
+book = Book.objects.creat_book('price of  book')
 
 
 
