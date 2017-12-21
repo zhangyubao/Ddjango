@@ -72,7 +72,7 @@ class Membership(models.Model):
 抽象类需要在Model 中的Meta类设置 abstract=True Django把你在基类内部定义的 Meta 类作为一个属性使其可用
 
 
-related_name：当你在(且仅在)抽象基类中使用related_name 时，如果想绕过这个问题，名称中就要包含'%(app_label)s'和 '%(class)s'
+related_name：当你在(且仅在)抽象基类中使用related_name时,如果想绕过这个问题,名称中就要包含'%(app_label)s'和 '%(class)s'
 '%(class)s'会替换为子类的小写加下划线格式的名称，字段在子类中使用。
 '%(app_label)s'会替换为应用的小写加下划线格式的名称，应用包含子类。每个安装的应用名称都应该是唯一的，而且应用里每个模型类的名称也应该是唯一的，所以产生的名称应该彼此不同
 
@@ -83,12 +83,12 @@ ChildA.m2m 字段的反向名称是 common_childa_related，而 ChildB.m2m 字�
 
 如果你没有在抽象基类中为某个关联字段定义 related_name 属性，那么默认的反向名称就是子类名称加上'_set'
 '''
-from django.db import models
+# from django.db import models
 
 
 class Base(models.Model):
-    m2m = models.ManyToManyField(
-        OtherModel, related_name="%(app_label)s_%(class)s_related")
+    # m2m = models.ManyToManyField(
+    #     OtherModel, related_name="%(app_label)s_%(class)s_related")
 
     class Meta:
         abstract = True
@@ -105,8 +105,9 @@ class ChildB(Base):
 # from common.models import Base
 
 
-class ChildB(Base):
-    pass
+# class ChildB(Base):
+
+#     pass
 
 
 '''
@@ -124,8 +125,32 @@ class MyPerson(Person):
     class Meta:
         proxy = True
         ordering = ['']
+        data_table = 'model_person'
         # 这里所有的Meta属性都可以使用
 
     def do_something(self):
         # ...
         pass
+
+
+
+'''
+
+对查询求值
+
+if Base.objects.filter(help=''):
+
+for e in Base.objects.all():   #bool()、or、and 或者if
+
+list(Base.objects.all())  返回一个list
+
+
+
+'''
+
+# pickle查询集是干嘛用的 这个进一步了解~~~~~~~~~~~~~
+
+
+
+
+
