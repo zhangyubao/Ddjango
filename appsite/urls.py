@@ -29,3 +29,5 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^west/', include('west.urls')),
 ]
+
+
